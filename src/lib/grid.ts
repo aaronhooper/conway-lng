@@ -64,24 +64,24 @@ export class Grid {
   get height() {
     return this._height;
   }
-}
 
-export function toggleCell(state: GridState, point: Coords): GridState {
-  const [x, y] = point;
-  const cell = at(state, point);
-  const toggle = (c: CellState) =>
-    c === CellState.Alive ? CellState.Dead : CellState.Alive;
+  static toggleCell(state: GridState, point: Coords): GridState {
+    const [x, y] = point;
+    const cell = Grid.at(state, point);
+    const toggle = (c: CellState) =>
+      c === CellState.Alive ? CellState.Dead : CellState.Alive;
 
-  return setIn(state, [y, x], toggle(cell));
-}
-
-export function at(state: GridState, point: Coords): CellState {
-  const [x, y] = point;
-  const cell = state.get(y)?.get(x);
-
-  if (cell === undefined) {
-    throw new RangeError("Point must be within grid bounds");
+    return setIn(state, [y, x], toggle(cell));
   }
 
-  return cell;
+  static at(state: GridState, point: Coords): CellState {
+    const [x, y] = point;
+    const cell = state.get(y)?.get(x);
+
+    if (cell === undefined) {
+      throw new RangeError("Point must be within grid bounds");
+    }
+
+    return cell;
+  }
 }
