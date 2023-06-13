@@ -65,7 +65,7 @@ export class Grid {
     return this._height;
   }
 
-  static toggleCell(state: GridState, point: Coords): GridState {
+  static toggle(state: GridState, point: Coords): GridState {
     const [x, y] = point;
     const cell = Grid.at(state, point);
     const toggle = (c: CellState) =>

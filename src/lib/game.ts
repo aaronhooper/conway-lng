@@ -28,9 +28,9 @@ export class Game {
           cellState === CellState.Alive &&
           (liveNeighborCount < 2 || liveNeighborCount > 3)
         ) {
-          nextGridState = Grid.toggleCell(nextGridState, point);
+          nextGridState = Grid.toggle(nextGridState, point);
         } else if (cellState === CellState.Dead && liveNeighborCount === 3) {
-          nextGridState = Grid.toggleCell(nextGridState, point);
+          nextGridState = Grid.toggle(nextGridState, point);
         }
       }
     }
