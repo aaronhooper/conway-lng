@@ -25,12 +25,12 @@ export class Game {
       for (let j = 0; j < this.grid.width; j++) {
         const point: Coords = [j, i];
         const cellState = Grid.at(this.grid.state, point);
+        const cellIsAlive = (p: Coords) =>
+          Grid.at(this.grid.state, p) === CellState.Alive;
 
         const liveNeighborCount = this.grid
           .neighbors(point)
-          .filter(
-            (p) => Grid.at(this.grid.state, p) === CellState.Alive
-          ).length;
+          .filter(cellIsAlive).length;
 
         if (
           cellState === CellState.Alive &&
