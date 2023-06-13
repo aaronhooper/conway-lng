@@ -2,12 +2,20 @@ import { Coords, CellState } from "./types";
 import { Grid } from "./grid";
 
 export class Game {
-  grid: Grid;
-  generation: number;
+  private _grid: Grid;
+  private _generation: number;
 
   constructor(grid: Grid) {
-    this.grid = grid;
-    this.generation = 0;
+    this._grid = grid;
+    this._generation = 0;
+  }
+
+  get grid() {
+    return this._grid;
+  }
+
+  get generation() {
+    return this._generation;
   }
 
   next() {
@@ -36,6 +44,6 @@ export class Game {
     }
 
     this.grid.state = nextGridState;
-    this.generation += 1;
+    this._generation += 1;
   }
 }
