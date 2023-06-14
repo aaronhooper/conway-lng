@@ -1,17 +1,30 @@
 import { Game } from "../lib/game";
 import { Grid } from "../lib/grid";
+import { Coords } from "../lib/types";
 
 describe("game", () => {
   it("renders a blinker", () => {
     const gen0 = new Grid(5, 5);
-    gen0.state = Grid.toggle(gen0.state, [1, 0]);
-    gen0.state = Grid.toggle(gen0.state, [1, 1]);
-    gen0.state = Grid.toggle(gen0.state, [1, 2]);
+    const gen0Coords: Coords[] = [
+      [1, 0],
+      [1, 1],
+      [1, 2],
+    ];
+
+    for (const point of gen0Coords) {
+      gen0.state = Grid.toggle(gen0.state, point);
+    }
 
     const gen1 = new Grid(5, 5);
-    gen1.state = Grid.toggle(gen1.state, [0, 1]);
-    gen1.state = Grid.toggle(gen1.state, [1, 1]);
-    gen1.state = Grid.toggle(gen1.state, [2, 1]);
+    const gen1Coords: Coords[] = [
+      [0, 1],
+      [1, 1],
+      [2, 1],
+    ];
+
+    for (const point of gen1Coords) {
+      gen1.state = Grid.toggle(gen1.state, point);
+    }
 
     const game = new Game(gen0);
 
@@ -24,19 +37,32 @@ describe("game", () => {
 
   it("renders a beacon", () => {
     const gen0 = new Grid(6, 6);
-    gen0.state = Grid.toggle(gen0.state, [1, 1]);
-    gen0.state = Grid.toggle(gen0.state, [1, 2]);
-    gen0.state = Grid.toggle(gen0.state, [2, 1]);
-    gen0.state = Grid.toggle(gen0.state, [2, 2]);
-    gen0.state = Grid.toggle(gen0.state, [3, 3]);
-    gen0.state = Grid.toggle(gen0.state, [3, 4]);
-    gen0.state = Grid.toggle(gen0.state, [4, 3]);
-    gen0.state = Grid.toggle(gen0.state, [4, 4]);
+    const gen0Coords: Coords[] = [
+      [1, 1],
+      [1, 2],
+      [2, 1],
+      [2, 2],
+      [3, 3],
+      [3, 4],
+      [4, 3],
+      [4, 4],
+    ];
+
+    for (const point of gen0Coords) {
+      gen0.state = Grid.toggle(gen0.state, point);
+    }
 
     const gen1 = new Grid(6, 6);
+    const gen1Coords: Coords[] = [
+      [2, 2],
+      [3, 3],
+    ];
+
     gen1.state = gen0.state;
-    gen1.state = Grid.toggle(gen1.state, [2, 2]);
-    gen1.state = Grid.toggle(gen1.state, [3, 3]);
+
+    for (const point of gen1Coords) {
+      gen1.state = Grid.toggle(gen1.state, point);
+    }
 
     const game = new Game(gen0);
 
