@@ -2,7 +2,7 @@ import { Game } from "../lib/game";
 import { Grid } from "../lib/grid";
 import { Coords } from "../lib/types";
 
-describe("game", () => {
+describe("Game", () => {
   it("renders a blinker", () => {
     const gen0 = new Grid(5, 5);
     const gen0Coords: Coords[] = [
