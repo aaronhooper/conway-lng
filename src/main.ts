@@ -3,14 +3,15 @@ import { Grid } from "./lib/grid";
 import { CellState, Coords } from "./lib/types";
 
 const CELL_WIDTH = 20;
-const GAME_WIDTH = 50;
-const GAME_HEIGHT = 30;
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const grid = new Grid(GAME_WIDTH, GAME_HEIGHT);
+const gameWidth = Math.floor(canvas.width / (CELL_WIDTH + 1));
+const gameHeight = Math.floor(canvas.height / (CELL_WIDTH + 1));
+
+const grid = new Grid(gameWidth, gameHeight);
 const gridCoords: Coords[] = [
   [1, 3],
   [2, 1],
@@ -32,8 +33,8 @@ function draw(): void {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   game.next();
 
-  for (let i = 0; i < GAME_HEIGHT; i++) {
-    for (let j = 0; j < GAME_WIDTH; j++) {
+  for (let i = 0; i < gameHeight; i++) {
+    for (let j = 0; j < gameWidth; j++) {
       const cell = Grid.at(game.grid.state, [j, i]);
 
       if (cell === CellState.Alive) {
