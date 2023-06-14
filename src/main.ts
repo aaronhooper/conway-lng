@@ -1,6 +1,6 @@
 import { Game } from "./lib/game";
 import { Grid } from "./lib/grid";
-import { CellState, Coords } from "./lib/types";
+import { CellState } from "./lib/types";
 
 const CELL_WIDTH = 20;
 
@@ -11,19 +11,7 @@ canvas.height = window.innerHeight;
 const gameWidth = Math.floor(canvas.width / (CELL_WIDTH + 1));
 const gameHeight = Math.floor(canvas.height / (CELL_WIDTH + 1));
 
-const grid = new Grid(gameWidth, gameHeight);
-const gridCoords: Coords[] = [
-  [1, 3],
-  [2, 1],
-  [2, 3],
-  [3, 2],
-  [3, 3],
-];
-
-for (const point of gridCoords) {
-  grid.state = Grid.toggle(grid.state, point);
-}
-
+const grid = Grid.random(gameWidth, gameHeight);
 const game = new Game(grid);
 
 function draw(): void {

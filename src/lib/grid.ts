@@ -74,6 +74,11 @@ export class Grid {
     return setIn(state, [y, x], toggle(cell));
   }
 
+  static set(state: GridState, point: Coords, value: CellState) {
+    const [x, y] = point;
+    return setIn(state, [y, x], value);
+  }
+
   static at(state: GridState, point: Coords): CellState {
     const [x, y] = point;
     const cell = state.get(y)?.get(x);
@@ -83,5 +88,19 @@ export class Grid {
     }
 
     return cell;
+  }
+
+  static random(width: number, height: number): Grid {
+    const grid = new Grid(width, height);
+
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
+        const random = Math.random() < 0.5;
+        const cell = random ? CellState.Alive : CellState.Dead;
+        grid.state = Grid.set(grid.state, [j, i], cell);
+      }
+    }
+
+    return grid;
   }
 }
